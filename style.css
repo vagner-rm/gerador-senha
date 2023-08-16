@@ -12,3 +12,23 @@ body {
     color: #252525;
     padding: 2rem;
 }
+
+main {
+    max-width: 780px;
+    margin: 0 auto;
+}
+.header {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+.header .title {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1.5rem;
+}
+
+.header .subtitle {
+    font-size: 1.125rem;
+    color: #828282
+}
