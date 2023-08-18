@@ -213,3 +213,22 @@ main {
 .checkbox-container input:checked ~ .checkmark::after {
     display: block;
 }
+
+.submit {
+    text-align: center;
+}
+
+.submit button {
+    background-color: #bb6bd9;
+    font-size: 1.375em;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    transition: all 0.2s;
+    cursor:pointer;
+}
+
+.submit button:hover {
+    background-color: #9b51e0;
+}

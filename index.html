@@ -57,15 +57,37 @@
                 </div>
             </div>
         </section>
-
+<div class="submit">
     <button id="btn-copy">Copiar senha</button>
+</div>    
     </main>    
     <script>
         let passwordLength = 16
         const inputEl = document.querySelector("#password")
+        const upperCaseCheckEl = document.querySelector("#uppercase-check") 
+        const numberCheckEl = document.querySelector("#number-check") 
+        const symbolCheckEl = document.querySelector("#symbol-check") 
 
         function generatePassword () {
-            const chars = "abcdefghjkmnpqrstuwxyzABCDEFGHJKMNPQRSTUWXYZ123456789@#$%&*()[]!?"
+            let chars = "abcdefghjkmnpqrstuwxyz"
+
+            const upperCaseChars = "ABCDEFGHJKMNPQRSTUWXYZ"
+            const numberChars = "123456789"
+            const symbolChars = "@#$%&*()[]!?"
+
+            if (upperCaseCheckEl.checked) {
+                chars += upperCaseChars 
+            } 
+
+            if (numberCheckEl.checked) {
+                chars += numberChars 
+            } 
+
+            if (symbolCheckEl.checked) {
+                chars += symbolChars 
+            } 
+            
+            
 
             let password = ""
 
@@ -86,6 +108,10 @@
            passwordLength = passwordLengthEl.value
            generatePassword()
         })
+
+        upperCaseCheckEl.addEventListener("click", generatePassword)
+        numberCheckEl.addEventListener("click", generatePassword)
+        symbolCheckEl.addEventListener("click", generatePassword)
 
        document.querySelector("#btn-copy").addEventListener("click", copy)
        document.querySelector("#btn-copy-input").addEventListener("click", copy)
