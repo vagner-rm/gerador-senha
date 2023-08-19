@@ -23,12 +23,12 @@
                         <img src="copy.svg" alt="botão de copiar" width="42px">
                     </button>
                     <button id="renew">
-                        <img src="renew.svg" alt="botão de recarregar" width="42px">
+                        <img src="renew.svg" alt="botão de recarregar" style="width: 100%;" width="42px">
                     </button>
                 </div>
             </div>
             <div class="security-indicator">
-                <div id="security-indicator-bar" class="bar" style="width: 90%;"></div>
+                <div id="security-indicator-bar" class="bar critical"></div>
             </div>
         </section>
         <section class="box customize">
@@ -57,9 +57,9 @@
                 </div>
             </div>
         </section>
-<div class="submit">
-    <button id="btn-copy">Copiar senha</button>
-</div>    
+    <div class="submit">
+        <button id="btn-copy">Copiar senha</button>
+    </div>    
     </main>    
     <script>
         let passwordLength = 16
@@ -67,6 +67,7 @@
         const upperCaseCheckEl = document.querySelector("#uppercase-check") 
         const numberCheckEl = document.querySelector("#number-check") 
         const symbolCheckEl = document.querySelector("#symbol-check") 
+        const securityIndicatorBarEl = document.querySelector("#security-indicator-bar")
 
         function generatePassword () {
             let chars = "abcdefghjkmnpqrstuwxyz"
@@ -97,6 +98,43 @@
             }
 
             inputEl.value = password
+            calculateQuality()
+        }
+
+        function calculateQuality () {
+            // T*0.25 + M*0.15 + N*0.25 + S*0.35 = 100
+
+            const percent = Math.round(
+            (passwordLength / 64) * 25 + 
+            (upperCaseCheckEl.checked ? 15 : 0) + 
+            (numberCheckEl.checked ? 25 : 0) +
+            (symbolCheckEl.checked ? 35 : 0)
+            )
+
+            console.log(percent)
+            securityIndicatorBarEl.style.width = `${percent}%`
+
+            if (percent > 69) {
+                // safe
+                securityIndicatorBarEl.classList.remove("critical")
+                securityIndicatorBarEl.classList.remove("warning")
+                securityIndicatorBarEl.classList.add("safe")
+            } else if (percent> 50) {
+                // warning
+                securityIndicatorBarEl.classList.remove("critical")
+                securityIndicatorBarEl.classList.add("warning")
+                securityIndicatorBarEl.classList.remove("safe")
+            } else {
+                // critical
+                securityIndicatorBarEl.classList.add("critical")
+                securityIndicatorBarEl.classList.remove("warning")
+                securityIndicatorBarEl.classList.remove("safe")
+            }
+            if (percent >= 100) {
+                securityIndicatorBarEl.classList.add("completed")
+            } else {
+                securityIndicatorBarEl.classList.remove("completed")
+            }
         }
 
         function copy () {
