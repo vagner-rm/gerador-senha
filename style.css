@@ -263,7 +263,7 @@ main {
    }
 
    .password .text input.font-xxs {
-    font-size: 1.rem;
+    font-size: .8rem;
    }
 
    .password .actions img {
