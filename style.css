@@ -30,7 +30,7 @@ main {
 
 .header .subtitle {
     font-size: 1.125rem;
-    color: #828282
+    color: #828282;
 }
 
 .box {
@@ -47,7 +47,7 @@ main {
 }
 
 .password .text {
-    flex: 1
+    flex: 1;
 }
 
 .password .text input {
